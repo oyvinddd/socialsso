@@ -13,6 +13,7 @@ const (
 
 	claimsIssuer2 string = "https://accounts.google.com"
 
+	// TODO: remove hard coding
 	clientID string = "81111383572-9s4c8ba9ncg3hjfk6rr2kes5qblrb5qe.apps.googleusercontent.com"
 )
 
@@ -35,12 +36,15 @@ type (
 	}
 
 	googleService struct {
-		repository account.Repository
+
+		clientID	string
+
+		repository	account.Repository
 	}
 )
 
-func NewGoogleService(repository account.Repository) Service {
-	return &googleService{repository: repository}
+func NewGoogleService(clientID string, repository account.Repository) Service {
+	return &googleService{clientID: clientID, repository: repository}
 }
 
 func (s googleService)SignIn(ctx context.Context, claims Claims) (*account.Account, error) {
