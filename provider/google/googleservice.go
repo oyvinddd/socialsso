@@ -5,7 +5,6 @@ import (
 	"errors"
 	"github.com/dgrijalva/jwt-go"
 	"socialsso/account"
-	"socialsso/provider"
 )
 
 const (
@@ -48,18 +47,18 @@ type (
 		// Email the email for the signed-in user
 		Email		string	`json:"email"`
 
-		Verified	bool	`json:"verified"`
+		//Verified	bool	`json:"verified"`
 
-		FirstName	*string `json:"first_name"`
+		//FirstName	*string `json:"first_name"`
 
-		LastName	*string `json:"last_name"`
+		//LastName	*string `json:"last_name"`
 
 		jwt.StandardClaims
 	}
 )
 
 // NewGoogleService creates a new Google service instance
-func NewGoogleService(clientID string, repository account.Repository) provider.Service {
+func NewGoogleService(clientID string, repository account.Repository) account.Service {
 	return &googleService{clientID: clientID, repository: repository}
 }
 
