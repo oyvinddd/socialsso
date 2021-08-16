@@ -6,19 +6,18 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"io/ioutil"
 	"net/http"
-	"soocialsso/account"
 	"time"
 )
 
 // https://qvault.io/2020/07/22/how-to-implement-sign-in-with-google-in-golang/
 // TODO: check that my validation follows the steps in the docs:
 // https://developers.google.com/identity/sign-in/ios/backend-auth
-func ValidateGoogleJWT(jwtToken account.JWT) (*Claims, error) {
+func validateGoogleJWT(idToken, clientID string) (*Claims, error) {
 	claims := &Claims{}
 	// in this case, we only care about the access token, since that's the one from Google.
 	// refresh token field is empty since only access token was sent to us by the user trying
 	// to log in using Google.
-	token, err := jwt.ParseWithClaims(jwtToken.AccessToken, claims, func(token *jwt.Token) (interface{}, error) {
+	token, err := jwt.ParseWithClaims(idToken, claims, func(token *jwt.Token) (interface{}, error) {
 		keyID := fmt.Sprintf("%s", token.Header["kid"])
 		pem, err := getGooglePublicKey(keyID)
 		if err != nil {

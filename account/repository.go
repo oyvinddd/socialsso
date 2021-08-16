@@ -3,5 +3,7 @@ package account
 import "context"
 
 type Repository interface {
-	GetOrCreate(ctx context.Context, email string) (*Account, error)
+	// GetOrCreate creates a new account. If account already
+	// exists it should simply return the existing account.
+	GetOrCreate(context.Context, *Account) (*Account, error)
 }
