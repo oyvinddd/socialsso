@@ -1,4 +1,4 @@
-module soocialsso
+module socialsso
 
 go 1.15
 
