@@ -13,9 +13,6 @@ const (
 	claimsIssuer string = "accounts.google.com"
 
 	claimsIssuer2 string = "https://accounts.google.com"
-
-	// TODO: remove hard coding
-	//clientID string = "81111383572-9s4c8ba9ncg3hjfk6rr2kes5qblrb5qe.apps.googleusercontent.com"
 )
 
 var (
