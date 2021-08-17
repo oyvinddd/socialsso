@@ -1,4 +1,4 @@
-package account
+package socialsso
 
 const (
 	// OriginGoogle is the Google origin
@@ -8,13 +8,19 @@ const (
 type (
 	Account struct {
 
+		// ID is the account's unique identifier
 		ID			string		`json:"id"`
 
+		// Email is the account's email address
 		Email 		string		`json:"email"`
 
-		Origin		Origin		`json:"origin"`
+		// Origin is describes the provider that was
+		// used when signing in to the application
+		Origin Origin `json:"origin"`
 
-		Token		*JWT		`json:"jwt"`
+		// Token represents a JWT token used for accessing
+		// restricted resources etc.
+		Token		*JWT `json:"jwt"`
 	}
 
 	JWT struct {
