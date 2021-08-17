@@ -2,6 +2,7 @@ package google
 
 import (
 	"encoding/json"
+	"errors"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"io/ioutil"
@@ -9,10 +10,31 @@ import (
 	"time"
 )
 
+const (
+	publicKeyURL string = "https://www.googleapis.com/oauth2/v1/certs"
+
+	claimsIssuer string = "accounts.google.com"
+
+	claimsIssuer2 string = "https://accounts.google.com"
+)
+
+var (
+	errInvalidJWT = errors.New("invalid Google JWT")
+
+	errInvalidAUD = errors.New("AUD is invalid")
+
+	errInvalidISS = errors.New("invalid ISS")
+
+	errExpiredJWT =  errors.New("JWT expired")
+
+	errMissingKey = errors.New("public key not found")
+)
+
 // https://qvault.io/2020/07/22/how-to-implement-sign-in-with-google-in-golang/
 // TODO: check that my validation follows the steps in the docs:
 // https://developers.google.com/identity/sign-in/ios/backend-auth
-func validateGoogleJWT(idToken, clientID string) (*Claims, error) {
+// ValidateGoogleJWT validates an incoming JWT and checks that it is in fact coming from Google
+func ValidateGoogleJWT(idToken, clientID string) (*Claims, error) {
 	claims := &Claims{}
 	// in this case, we only care about the access token, since that's the one from Google.
 	// refresh token field is empty since only access token was sent to us by the user trying
