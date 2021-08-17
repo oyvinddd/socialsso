@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 	"github.com/dgrijalva/jwt-go"
-	"socialsso/account"
+	"github.com/oyvinddd/socialsso/account"
 )
 
 const (
