@@ -1,4 +1,4 @@
-module socialsso
+module github.com/oyvinddd/socialsso
 
 go 1.15
 
