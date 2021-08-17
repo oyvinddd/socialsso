@@ -2,7 +2,7 @@ package socialsso
 
 import (
 	"context"
-	"socialsso/provider/google"
+	"github.com/oyvinddd/socialsso/provider/google"
 )
 
 type (
