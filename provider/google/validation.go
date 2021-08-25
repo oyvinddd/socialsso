@@ -11,10 +11,13 @@ import (
 )
 
 const (
+	// URL to public key from Google
 	publicKeyURL string = "https://www.googleapis.com/oauth2/v1/certs"
 
+	// Issuer of the ID token
 	claimsIssuer string = "accounts.google.com"
 
+	// Issuer of the ID token (2)
 	claimsIssuer2 string = "https://accounts.google.com"
 )
 
@@ -66,6 +69,7 @@ func ValidateGoogleJWT(idToken, clientID string) (*Claims, error) {
 	return claims, nil
 }
 
+// requests public key from Google
 func getGooglePublicKey(keyID string) (*string, error) {
 	res, err := http.Get(publicKeyURL)
 	if err != nil {

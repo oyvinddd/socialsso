@@ -8,16 +8,17 @@ import (
 type (
 	// Service interface that every social SSO provider needs to conform to
 	Service interface {
+		// SignIn signs the user into the client application
 		SignIn(context.Context, string) (*Account, error)
 	}
 
 	googleService struct {
 		// clientID this is a unique client ID from Google
-		clientID	string
+		clientID string
 
 		// repository is where the user will be persisted in the end
 		// client applications are required to conform to this interface
-		repository	Repository
+		repository Repository
 	}
 )
 
