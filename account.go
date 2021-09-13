@@ -4,11 +4,11 @@ const (
 	// OriginGoogle means the user signed in using Google
 	OriginGoogle = Origin(0)
 
-	// OriginApple means the user signed in using Apple
-	OriginApple = Origin(1)
+	// FacebookOrigin means the user signed in using Facebook
+	FacebookOrigin = Origin(1)
 
-	// OriginTwitter means the user signed in using Twitter
-	OriginTwitter = Origin(2)
+	// AppleOrigin means the user signed in using Apple
+	AppleOrigin = Origin(2)
 )
 
 type (
@@ -26,7 +26,7 @@ type (
 		Origin Origin `json:"origin"`
 
 		// Token represents a JWT token used for accessing
-		// restricted resources etc.
+		// restricted resources in the application
 		Token *JWT `json:"jwt"`
 	}
 
@@ -34,10 +34,10 @@ type (
 	JWT struct {
 
 		// AccessToken used for getting access to secure resources
-		AccessToken 	string		`json:"access_token"`
+		AccessToken string `json:"access_token"`
 
 		// RefreshToken used for refreshing an expired access token
-		RefreshToken 	*string		`json:"refresh_token"`
+		RefreshToken *string `json:"refresh_token"`
 	}
 
 	// Origin specifies the provider that was used when authenticating
