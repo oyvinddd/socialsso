@@ -1,6 +1,6 @@
 package google
 
-import "github.com/dgrijalva/jwt-go"
+import "github.com/golang-jwt/jwt/v4"
 
 type Claims struct {
 
