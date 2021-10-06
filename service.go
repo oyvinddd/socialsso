@@ -2,7 +2,6 @@ package socialsso
 
 import (
 	"context"
-	"github.com/oyvinddd/socialsso/provider/google"
 	"golang.org/x/oauth2"
 	googl "golang.org/x/oauth2/google"
 	"net/url"
@@ -52,13 +51,8 @@ func NewGoogleService(clientID, clientSecret, redirectURL string, scopes []strin
 }
 
 // SignIn signs the user in to the application using Google
-func (s googleService)SignIn(ctx context.Context, idToken string) (*Account, error) {
-	claims, err := google.ValidateGoogleJWT(idToken, s.config.ClientID)
-	if err != nil {
-		return nil, err
-	}
-	acc := NewGoogleAccount(claims.Email, nil)
-	return s.repository.GetOrCreate(ctx, acc)
+func (s googleService)SignIn(ctx context.Context, email string) (*Account, error) {
+	return s.repository.GetOrCreate(ctx, NewGoogleAccount(email, nil))
 }
 
 func (s googleService)GetRedirectURL() string {
